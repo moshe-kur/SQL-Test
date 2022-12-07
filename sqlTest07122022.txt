@@ -1,0 +1,52 @@
+--EX1
+select *
+from Products
+where UnitPrice between 30 and 40
+------------------------------------------------------------------------
+--EX2
+select *
+from Products
+where CategoryID =2
+------------------------------------------------------------------------
+--EX3
+select *
+from Products
+where CategoryID in 
+(select CategoryID from Categories where  Description like '%s%')
+order by ProductName
+------------------------------------------------------------------------
+--EX4
+select ProductName from Products 
+inner join [Order Details] on Products.ProductID = [Order Details].ProductID
+inner join Orders on [Order Details].OrderID = Orders.OrderID
+where Orders.CustomerID = 'ALFKI'
+------------------------------------------------------------------------
+--EX5
+select *
+from Orders
+where ShipCountry like 'brazil' or shipcity like 'london'
+------------------------------------------------------------------------
+--EX6
+select CompanyName
+from Customers
+inner join Orders on Customers.CustomerID = Orders.CustomerID
+where ShipVia =3
+------------------------------------------------------------------------
+--EX7
+create PROCEDURE GetDetails @orderid int 
+AS
+BEGIN
+select ProductName,Products.UnitPrice from Products 
+inner join [Order Details] on Products.ProductID=[Order Details].ProductID
+where [Order Details].OrderID=@orderid
+
+select sum(Products.UnitPrice) from Products 
+inner join [Order Details] on Products.ProductID=[Order Details].ProductID
+where [Order Details].OrderID=@orderid
+END
+
+------------------------------------------------------------------------
+--EX8
+
+
+------------------------------------------------------------------------

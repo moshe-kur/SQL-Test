@@ -47,6 +47,7 @@ END
 
 ------------------------------------------------------------------------
 --EX8
-
-
+select  [CustomerID],[EmployeeID],[ShipVia],[Freight],[ShipName],[ShipAddress],[ShipCity],[ShipRegion],[ShipPostalCode],[ShipCountry]
+from Orders
+where CustomerID like 'b%' and ShipName like 'b%' and ShipVia =1 and (EmployeeID =2 or EmployeeID =5)
 ------------------------------------------------------------------------
